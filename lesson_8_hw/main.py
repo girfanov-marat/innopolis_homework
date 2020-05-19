@@ -11,7 +11,8 @@ def monster(hero_hp: int, hero_damage: int) -> typing.Tuple[int, int]:
     """
     В функции реализована встреча с монстром.
 
-    Можно выбрать - сражаться или убежать
+    У монстра рандомный урон и здоровье.
+    Можно выбрать - сражаться или убежать.
     """
     monster_hp = random.randint(20, 30)
     monster_damage = random.randint(10, 30)
@@ -46,7 +47,7 @@ def fight(hero_hp: int, hero_damage: int,
         print("Раунд: ", i+1)
         print(f"Вы нанесли монстру {hero_damage} урона. "
               f"У монстра осталось {monster_hp} жизней")
-        print(f"Монстр нанес вам {monster_damage}. "
+        print(f"Монстр нанес вам {monster_damage} урона."
               f"У вас осталось {hero_hp} жизней")
         if hero_hp <= 0:
             print("Вы проиграли!")
@@ -73,6 +74,7 @@ def sword(damage: int) -> int:
     """
     Функция предлагает установить новое рандомное значение урона героя.
 
+    Значение задается в пределах 10-25
     Можно выбрать новый меч или отказаться.
     """
     sword_power = random.randint(10, 25)
