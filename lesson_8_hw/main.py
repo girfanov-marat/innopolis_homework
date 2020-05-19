@@ -1,3 +1,4 @@
+"""Текстовая игра "Герой и Чудовища"."""
 import random
 import typing
 
@@ -7,6 +8,11 @@ kills = 0
 
 
 def monster(hero_hp: int, hero_damage: int) -> typing.Tuple[int, int]:
+    """
+    В функции реализована встреча с монстром.
+
+    Можно выбрать - сражаться или убежать
+    """
     monster_hp = random.randint(20, 30)
     monster_damage = random.randint(10, 30)
     answers = ["1", "2"]
@@ -29,6 +35,7 @@ def monster(hero_hp: int, hero_damage: int) -> typing.Tuple[int, int]:
 
 def fight(hero_hp: int, hero_damage: int,
           monster_hp: int, monster_damage: int) -> int:
+    """Функция боя с монстром."""
     if monster_hp // hero_damage < hero_hp // monster_damage:
         rounds = monster_hp // hero_damage + 1
     else:
@@ -43,14 +50,19 @@ def fight(hero_hp: int, hero_damage: int,
               f"У вас осталось {hero_hp} жизней")
         if hero_hp <= 0:
             print("Вы проиграли!")
-            input("Нажмите любую клавишу для выхода")
             break
         if monster_hp <= 0:
+            print("Вы убили монстра!")
             break
     return hero_hp
 
 
 def apple(hp: int) -> int:
+    """
+    Функция прибавляет к здоровью героя рандомное значение.
+
+    Значение задается в пределах 5-10.
+    """
     healing = random.randint(5, 10)
     hp = hp + healing
     print(f"Вы нашли яблоко, которое восстановило вам {healing} здоровья")
@@ -58,6 +70,11 @@ def apple(hp: int) -> int:
 
 
 def sword(damage: int) -> int:
+    """
+    Функция предлагает установить новое рандомное значение урона героя.
+
+    Можно выбрать новый меч или отказаться.
+    """
     sword_power = random.randint(10, 25)
     answers = ["1", "2"]
     print(f"Вы обнаружили меч с уроном: {sword_power}")
@@ -70,9 +87,14 @@ def sword(damage: int) -> int:
         print("Вы подобрали новый меч")
         damage = sword_power
     elif choice == "2":
-        print("Вы оставиили свой старый меч и пошли дальше")
+        print("Вы оставили старый меч и пошли дальше")
     return damage
 
+
+print("Текстовая игра \"Герой и Чудовища\" \n"
+      "Вы - рыцарь в фантастической стране. \n"
+      "Ваша задача - победить 10 чудовищ, чтобы спасти королевство "
+      "от нападения и тем самым выиграть игру.")
 
 while kills != 10:
     print(f"Здоровье: {heal_points}, Урон: {current_damage}, "
@@ -92,4 +114,5 @@ while kills != 10:
 
 if kills == 10:
     print("Победа!")
-    input("Нажмите любую клавишу для выхода")
+
+input("Нажмите любую клавишу для выхода")
