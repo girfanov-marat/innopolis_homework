@@ -66,7 +66,7 @@ def create_tables() -> None:
 
 
 def goods_insert(values: dict) -> Any:
-    """Создание экземпляра класса Goods с полученным значениями."""
+    """Создание объекта класса Goods с полученным параметрами."""
     to_insert = Goods(id=values["id"],
                       name=values["name"],
                       package_height=values["height"],
@@ -75,7 +75,7 @@ def goods_insert(values: dict) -> Any:
 
 
 def shop_goods_insert(values: dict) -> Any:
-    """Создание экземпляра класса ShopGoods с полученным значениями."""
+    """Создание объекта класса ShopGoods с полученным параметрами."""
     to_insert = ShopGoods(id_good=values["id_good"],
                           location=values["location"],
                           amount=values["amount"])
