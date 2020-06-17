@@ -1,4 +1,5 @@
 """Application file."""
+import asyncio
 from typing import Any
 
 from aiohttp import web
@@ -16,7 +17,7 @@ async def status(request: Request) -> Any:
 
     Return list of all entries in db.
     """
-    result = await get_info()
+    result = await asyncio.shield(get_info())
     return web.Response(text=result)
 
 
@@ -33,7 +34,7 @@ async def write_data(request: Request) -> Any:
         return web.json_response({"success": "false"})
     if validate_json(js):
         if validate_input(js["identifier"], js["status"]):
-            await insert_or_update(js["identifier"], js["status"])
+            await asyncio.shield(insert_or_update(js["identifier"], js["status"]))
             return web.json_response({"success": "true"})
         else:
             return web.json_response({"success": "false"})
