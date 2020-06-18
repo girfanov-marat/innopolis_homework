@@ -44,7 +44,7 @@ async def insert_or_update(d_id: str, d_status: str) -> None:
             else:
                 await conn.execute(delivery_status.insert().values(identifier=d_id,
                                                                    status=d_status))
-            async for row in conn.execute(delivery_status.select()):
+            async for row in conn.execute(delivery_status.select().where(delivery_status.c.identifier == d_id)):
                 print(row.identifier, row.status)
 
 
