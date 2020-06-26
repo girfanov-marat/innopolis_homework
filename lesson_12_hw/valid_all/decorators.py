@@ -14,14 +14,14 @@ def valid_all_decorator(input_validation: Callable,
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             if input_validation(*args, **kwargs):
                 res = func(*args, **kwargs)
+                if on_fail_repeat_times == 0:
+                    raise RepeatTimesZero
                 if result_validation(res):
                     return res
                 else:
                     if not default_behavior:
                         raise ResultVerificationError("Ошибка работы функции, результаты не совпадают")
                     else:
-                        if on_fail_repeat_times == 0:
-                            raise RepeatTimesZero
                         if on_fail_repeat_times == -1:
                             while not result_validation(res):
                                 res = func(*args, **kwargs)
